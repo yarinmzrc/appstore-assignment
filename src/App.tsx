@@ -1,5 +1,7 @@
+import AppRoutes from "./AppRoutes";
+
 function App() {
-  return <div>Hello</div>;
+  return <AppRoutes />;
 }
 
 export default App;
