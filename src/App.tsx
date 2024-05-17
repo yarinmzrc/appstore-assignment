@@ -8,7 +8,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <div className="bg-gray-200 dark:bg-slate-800 dark:text-white">
-          <div className="container max-w-[1360px] min-h-screen ">
+          <div className="container max-w-[1360px] min-h-screen pb-6">
             <NavBar />
             <AppRoutes />
           </div>

@@ -3,8 +3,8 @@ import { ModeToggle } from "./ModeToggle";
 
 const NavBar = () => {
   return (
-    <div className="flex justify-between items-center py-3">
-      <p className="font-bold text-3xl">AppStore</p>
+    <div className="flex justify-between items-center py-3 mb-8">
+      <p className="font-bold text-2xl md:text-4xl">AppStore</p>
       <div className="flex items-center gap-3">
         <Link to="/" className="hover:underline">
           Home

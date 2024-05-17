@@ -14,7 +14,9 @@ export function ModeToggle() {
         onCheckedChange={() => setTheme(isDarkMode ? "light" : "dark")}
         id="dark-mode"
       />
-      <Label htmlFor="dark-mode">{isDarkMode ? "Dark" : "Light"} Mode</Label>
+      <Label className="hidden md:block" htmlFor="dark-mode">
+        {isDarkMode ? "Dark" : "Light"} Mode
+      </Label>
     </div>
   );
 }
