@@ -37,14 +37,18 @@ const AppCard: React.FC<AppCardProps> = ({ app }) => {
       <CardContent className="p-5 dark:bg-slate-900 dark:rounded-lg">
         <div className="flex justify-between items-start">
           <img
-            width="50px"
-            height="50px"
+            width={50}
+            height={50}
             className="rounded-lg mb-1"
             src={app.artworkUrl100}
             alt={app.name}
           />
           <button onClick={handleFavoriteClick}>
-            {isFavorite ? <HeartFilledIcon /> : <HeartIcon />}
+            {isFavorite ? (
+              <HeartFilledIcon width={18} height={18} />
+            ) : (
+              <HeartIcon width={18} height={18} />
+            )}
           </button>
         </div>
         <p className="text-xs text-gray-400">{app.name}</p>
