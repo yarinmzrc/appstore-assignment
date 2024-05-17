@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { fetchTopFreeApps, fetchTopPaidApps } from "../features/apps/appsSlice";
 
 import { RootState } from "../store";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 import TopFreeApps from "@/components/TopFreeApps";
 import TopPaidApps from "@/components/TopPaidApps";
@@ -12,14 +11,16 @@ import Loading from "@/components/Loading";
 
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { topFreeApps, topPaidApps, status } = useSelector(
+  const { topFreeApps, topPaidApps, status } = useAppSelector(
     (state: RootState) => state.apps
   );
 
   useEffect(() => {
+    if (topFreeApps.length > 0 || topPaidApps.length > 0) return;
+
     dispatch(fetchTopFreeApps());
     dispatch(fetchTopPaidApps());
-  }, [dispatch]);
+  }, [dispatch, topFreeApps, topPaidApps]);
 
   return status === "loading" ? (
     <Loading />
