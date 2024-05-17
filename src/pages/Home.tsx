@@ -5,7 +5,10 @@ import { fetchTopFreeApps, fetchTopPaidApps } from "../features/apps/appsSlice";
 
 import { RootState } from "../store";
 import { useAppDispatch } from "../hooks";
-import AppCard from "../components/AppCard";
+
+import TopFreeApps from "@/components/TopFreeApps";
+import TopPaidApps from "@/components/TopPaidApps";
+import Loading from "@/components/Loading";
 
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -19,25 +22,11 @@ const HomePage: React.FC = () => {
   }, [dispatch]);
 
   return status === "loading" ? (
-    <div>Loading</div>
+    <Loading />
   ) : (
-    <div className="home-page">
-      <section className="top-free-apps">
-        <h2>Top Free Apps</h2>
-        <div className="horizontal-scroll">
-          {topFreeApps.map((app: any) => (
-            <AppCard key={app.id} app={app} />
-          ))}
-        </div>
-      </section>
-      <section className="top-paid-apps">
-        <h2>Top Paid Apps</h2>
-        <div className="vertical-scroll">
-          {topPaidApps.map((app: any) => (
-            <AppCard key={app.id} app={app} />
-          ))}
-        </div>
-      </section>
+    <div className="flex flex-col gap-6">
+      <TopFreeApps apps={topFreeApps} />
+      <TopPaidApps apps={topPaidApps} />
     </div>
   );
 };
