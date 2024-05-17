@@ -7,7 +7,7 @@ const TopFreeApps = ({ apps }: { apps: any }) => {
     <section>
       <h2 className="text-3xl mb-4">Top Free Apps</h2>
       <ScrollArea className="whitespace-nowrap rounded-md gap-3">
-        <div className="flex w-max space-x-4 py-4">
+        <div className="flex w-max space-x-4 pb-4">
           {apps.map((app: any) => (
             <AppCard key={app.id} app={app} />
           ))}
