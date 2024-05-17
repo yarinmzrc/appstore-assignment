@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AppData } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FavoritesState {
-  favoriteApps: Array<any>;
+  favoriteApps: Array<AppData>;
 }
 
 const initialState: FavoritesState = {
@@ -13,14 +13,14 @@ const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    addFavorite: (state, action: PayloadAction<any>) => {
+    addFavorite: (state, action: PayloadAction<AppData>) => {
       state.favoriteApps = [...state.favoriteApps, action.payload];
       localStorage.setItem(
         "appstore_favorites",
         JSON.stringify(state.favoriteApps)
       );
     },
-    removeFavorite: (state, action: PayloadAction<any>) => {
+    removeFavorite: (state, action: PayloadAction<AppData>) => {
       state.favoriteApps = state.favoriteApps.filter(
         (app) => app.id !== action.payload.id
       );

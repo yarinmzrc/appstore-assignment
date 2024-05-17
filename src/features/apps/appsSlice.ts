@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
+import { AppData } from "@/types";
 
 interface AppState {
-  topFreeApps: Array<any>;
-  topPaidApps: Array<any>;
+  topFreeApps: Array<AppData>;
+  topPaidApps: Array<AppData>;
   status: "idle" | "loading" | "failed";
 }
 

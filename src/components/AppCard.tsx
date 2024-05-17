@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
@@ -8,9 +7,10 @@ import {
   addFavorite,
   removeFavorite,
 } from "@/features/favorites/favoritesSlice";
+import { AppData } from "@/types";
 
 interface AppCardProps {
-  app: any;
+  app: AppData;
 }
 
 const AppCard: React.FC<AppCardProps> = ({ app }) => {
