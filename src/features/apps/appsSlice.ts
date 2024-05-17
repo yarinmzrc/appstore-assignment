@@ -14,7 +14,6 @@ const initialState: AppState = {
   status: "idle",
 };
 
-// Fetch top free apps using the api methods
 export const fetchTopFreeApps = createAsyncThunk(
   "apps/fetchTopFreeApps",
   async () => {
@@ -27,7 +26,6 @@ export const fetchTopFreeApps = createAsyncThunk(
   }
 );
 
-// Fetch top paid apps using the api methods
 export const fetchTopPaidApps = createAsyncThunk(
   "apps/fetchTopPaidApps",
   async () => {
