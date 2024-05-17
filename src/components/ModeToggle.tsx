@@ -1,4 +1,4 @@
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "@/hooks/useTheme";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
 
