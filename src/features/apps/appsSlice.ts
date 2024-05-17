@@ -38,6 +38,15 @@ export const fetchTopPaidApps = createAsyncThunk(
   }
 );
 
+export const fetchAllApps = createAsyncThunk("apps/fetchAllApps", async () => {
+  try {
+    const results = await api.getAllApps();
+    return results;
+  } catch (error) {
+    throw new Error("Error fetching top paid apps");
+  }
+});
+
 const appsSlice = createSlice({
   name: "apps",
   initialState,
@@ -62,6 +71,18 @@ const appsSlice = createSlice({
         state.topPaidApps = action.payload;
       })
       .addCase(fetchTopPaidApps.rejected, (state) => {
+        state.status = "failed";
+      })
+      .addCase(fetchAllApps.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAllApps.fulfilled, (state, action) => {
+        state.status = "idle";
+        const { freeResponse, paidResponse } = action.payload;
+        state.topPaidApps = paidResponse;
+        state.topFreeApps = freeResponse;
+      })
+      .addCase(fetchAllApps.rejected, (state) => {
         state.status = "failed";
       });
   },
