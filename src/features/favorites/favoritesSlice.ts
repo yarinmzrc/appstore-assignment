@@ -15,7 +15,10 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite: (state, action: PayloadAction<any>) => {
       state.favoriteApps = [...state.favoriteApps, action.payload];
-      localStorage.setItem("favorites", JSON.stringify(state.favoriteApps));
+      localStorage.setItem(
+        "appstore_favorites",
+        JSON.stringify(state.favoriteApps)
+      );
     },
     removeFavorite: (state, action: PayloadAction<any>) => {
       state.favoriteApps = state.favoriteApps.filter(
