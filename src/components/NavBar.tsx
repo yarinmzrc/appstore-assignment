@@ -1,6 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import { ModeToggle } from "./ModeToggle";
 
+const routes = [
+  {
+    to: "/",
+    text: "Home",
+  },
+  {
+    to: "/favorites",
+    text: "Favorites",
+  },
+];
+
 interface NavLinkProps {
   to: string;
   text: string;
@@ -21,12 +32,14 @@ const NavBar = () => {
     <div className="flex justify-between items-end py-4 mb-6 border-b border-slate-300 dark:border-slate-600">
       <p className="font-bold text-2xl">AppStore</p>
       <div className="flex items-center gap-3">
-        <NavLink to="/" text="Home" isActive={path === "/"} />
-        <NavLink
-          to="/favorites"
-          text="Favorites"
-          isActive={path === "/favorites"}
-        />
+        {routes.map((route) => (
+          <NavLink
+            key={route.to}
+            to={route.to}
+            text={route.text}
+            isActive={route.to === path}
+          />
+        ))}
       </div>
       <ModeToggle />
     </div>
