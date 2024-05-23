@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
-import { AppData } from "@/types";
+import { AppData, Status } from "@/types";
 
 interface AppState {
   topFreeApps: Array<AppData>;
   topPaidApps: Array<AppData>;
-  status: "idle" | "loading" | "failed";
+  status: Status;
 }
 
 const initialState: AppState = {
   topFreeApps: [],
   topPaidApps: [],
-  status: "idle",
+  status: Status.IDLE,
 };
 
 export const fetchTopFreeApps = createAsyncThunk(
@@ -48,11 +48,11 @@ export const fetchAllApps = createAsyncThunk("apps/fetchAllApps", async () => {
 });
 
 const handlePending = (state: AppState) => {
-  state.status = "loading";
+  state.status = Status.LOADING;
 };
 
 const handleRejected = (state: AppState) => {
-  state.status = "failed";
+  state.status = Status.FAILED;
 };
 
 const appsSlice = createSlice({
@@ -64,19 +64,19 @@ const appsSlice = createSlice({
       .addCase(fetchTopFreeApps.pending, handlePending)
       .addCase(fetchTopFreeApps.rejected, handleRejected)
       .addCase(fetchTopFreeApps.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = Status.IDLE;
         state.topFreeApps = action.payload;
       })
       .addCase(fetchTopPaidApps.pending, handlePending)
       .addCase(fetchTopPaidApps.rejected, handleRejected)
       .addCase(fetchTopPaidApps.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = Status.IDLE;
         state.topPaidApps = action.payload;
       })
       .addCase(fetchAllApps.pending, handlePending)
       .addCase(fetchAllApps.rejected, handleRejected)
       .addCase(fetchAllApps.fulfilled, (state, action) => {
-        state.status = "idle";
+        state.status = Status.IDLE;
         const { freeResponse, paidResponse } = action.payload;
         state.topFreeApps = freeResponse;
         state.topPaidApps = paidResponse;

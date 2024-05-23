@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import TopFreeApps from "@/components/TopFreeApps";
 import TopPaidApps from "@/components/TopPaidApps";
 import Loading from "@/components/Loading";
+import { Status } from "@/types";
 
 const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const HomePage: React.FC = () => {
     dispatch(fetchAllApps());
   }, [dispatch, topFreeApps, topPaidApps]);
 
-  return status === "loading" ? (
+  return status === Status.LOADING ? (
     <Loading />
   ) : (
     <div className="flex flex-col gap-6">
