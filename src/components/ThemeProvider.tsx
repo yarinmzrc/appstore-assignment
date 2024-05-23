@@ -1,7 +1,9 @@
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, useEffect, useState } from "react";
+import { ThemeMode } from "@/types";
 
-type Theme = "dark" | "light" | "system";
+type Theme = "dark" | "light";
+const { DARK, LIGHT } = ThemeMode;
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -15,7 +17,7 @@ type ThemeProviderState = {
 };
 
 const initialState: ThemeProviderState = {
-  theme: "system",
+  theme: DARK,
   setTheme: () => null,
 };
 
@@ -24,7 +26,7 @@ export const ThemeProviderContext =
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = DARK,
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
@@ -38,17 +40,7 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement;
 
-    root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-
-      root.classList.add(systemTheme);
-      return;
-    }
+    root.classList.remove(LIGHT, DARK);
 
     root.classList.add(theme);
   }, [theme]);

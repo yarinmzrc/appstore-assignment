@@ -13,3 +13,8 @@ export enum Status {
   FAILED = "failed",
   IDLE = "idle",
 }
+
+export enum ThemeMode {
+  LIGHT = "light",
+  DARK = "dark",
+}
