@@ -4,8 +4,8 @@ import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { RootState } from "@/store";
 import {
-  addFavorite,
-  removeFavorite,
+  addFavoriteWithLocalStorage,
+  removeFavoriteWithLocalStorage,
 } from "@/features/favorites/favoritesSlice";
 import { AppData } from "@/types";
 
@@ -26,9 +26,9 @@ const AppCard: React.FC<AppCardProps> = ({ app }) => {
 
   const handleFavoriteClick = () => {
     if (isFavorite) {
-      dispatch(removeFavorite(app));
+      dispatch(removeFavoriteWithLocalStorage(app));
     } else {
-      dispatch(addFavorite(app));
+      dispatch(addFavoriteWithLocalStorage(app));
     }
   };
 
